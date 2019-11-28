@@ -15,6 +15,10 @@ namespace HerbShop
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseKestrel(kestrelOpt =>
+                    {
+                        kestrelOpt.ListenAnyIP(80);
+                    });
                 });
     }
 }

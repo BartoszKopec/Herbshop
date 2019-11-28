@@ -55,10 +55,12 @@ namespace HerbShop.Controllers
             }
         }
 
-        //[HttpGet("order")]
-        //public IActionResult Order()
-        //{
-            
-        //}
+        [HttpGet("order")]
+        public IActionResult Order()
+        {
+            var cart = _cookies.Cart;
+            ViewData["cart"] = cart;
+            return View();
+        }
     }
 }
