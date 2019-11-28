@@ -1,0 +1,11 @@
+﻿@{
+    Layout = HerbShop.Utils.Routing.Layout;
+}
+
+<h1>Konto</h1>
+
+@{ 
+    var login = ViewData["login"];
+    <p>Witaj @login</p>
+    <a href="@HerbShop.Utils.Routing.AccountLogout">Wyloguj</a>
+}

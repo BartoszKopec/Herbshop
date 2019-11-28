@@ -1,0 +1,41 @@
+﻿@{
+    Layout = HerbShop.Utils.Routing.Layout;
+}
+
+<div class="w3-container w3-center">
+    @{
+        var eShopItems = ViewData["items"] as List<HerbShop.Models.Item>;
+        int count = eShopItems.Count;
+        for (int i = 0; i < count; i++)
+        {
+            var product = eShopItems[i];
+
+            <div class="w3-col l3 m6 s12">
+                <div class="w3-card w3-margin">
+                    <div class="w3-container w3-theme-l3">
+                        <p class="w3-center">@product.Name<p>
+                        <p class="w3-center">@product.Type<p>
+                    </div>
+
+                    <div class="w3-container w3-theme-l1">
+                        <p class="w3-center">@product.Price PLN</p>
+                        <p class="w3-center">@product.Unit@product.UnitSymbol</p>
+                        @*<button onclick="add(@product.Id)">Dodaj</button>*@
+                        <form action="@HerbShop.Utils.Routing.CartAdd" method="get">
+                            <input name="id" value="@product.Id" type="hidden"/>
+                            <input type="submit" value="Dodaj" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@*<script>
+    function add(id) {
+        var xhttp = XMLHttpRequest();
+        xhttp.open("GET", @HerbShop.Utils.Routing.CartAdd + id, true);
+        xhttp.send();
+    }
+</script>*@

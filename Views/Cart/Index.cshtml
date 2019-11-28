@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using HerbShop.Services;
+@{
+    Layout = HerbShop.Utils.Routing.Layout;
+    var cookies = new Cookies(new HttpContextAccessor
+    {
+        HttpContext = Context
+    });
+}
+    <div class="w3-container">
+        <p>Liczba przedmiotów: @cookies.InCartQuantity</p>
+        @{
+            if (cookies.IsSet(CookiesName.Cart))
+            {
+                <table class="w3-table w3-striped">
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Cena całkowita</th>
+                        <th>Ilość</th>
+                    </tr>
+                    @{
+                        foreach (var item in cookies.Cart.Items)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.TotalAmount</td>
+                                <td>@item.QuantityInCart</td>
+                            </tr>
+                        }
+                    }
+                </table>
+                <form action="@HerbShop.Utils.Routing.CartOrder" method="get">
+                    <input type="submit" value="Zamawiam" />
+                </form>
+                @*<form action="mailto:kopec.bartosz.app@gmail.com" method="post">
+                    <input name="login" value="@cookies.UserId" hidden/>
+                    @{ 
+                        for (int i = 0; i < cookies.Cart.Items.Count; i++) 
+                        { 
+                            var item = cookies.Cart.Items[i];  
+                            <input name="item_@i" value="@item.Id;@item.QuantityInCart" hidden/>
+                        }
+                    }
+                    <input type="submit" value="Zamawiam"/>
+                </form>*@
+            }
+        }
+
+    </div>
+
+

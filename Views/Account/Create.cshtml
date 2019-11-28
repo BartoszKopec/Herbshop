@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["title"] = "Rejestracja";
+    Layout = HerbShop.Utils.Routing.Layout;
+}
+
+<h1>Create</h1>
+
+@{
+    var error = (HerbShop.Models.Error)ViewData["error"];
+    if (error != null)
+    {
+        <p>@error.Message</p>
+    }
+}
+
+<form action="@HerbShop.Utils.Routing.AccountRegister" method="post">
+    <input type="text" name="login" />
+    <input type="password" name="password" />
+    <input type="submit" value="Zarejestruj" />
+</form>

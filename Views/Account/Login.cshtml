@@ -1,0 +1,21 @@
+﻿@{
+    Layout = HerbShop.Utils.Routing.Layout;
+}
+
+<h3>Logowanie</h3>
+
+@{
+    var error = ViewData["error"] as HerbShop.Models.Error;
+    if (error != null)
+    {
+        <p>@error.Message</p>
+    }
+}
+
+<form action="@HerbShop.Utils.Routing.AccountLogin" method="post">
+    <input type="text" name="login" />
+    <input type="password" name="password" />
+    <input type="submit" value="Zaloguj" />
+</form>
+
+<a href="@HerbShop.Utils.Routing.AccountRegister">Zarejestruj się</a>

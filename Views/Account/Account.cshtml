@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ 
+    var user = (HerbShop.Models.User)ViewBag["user"];
+    <p>@user.Login</p>
+    <p>@user.Password</p>
+}
+

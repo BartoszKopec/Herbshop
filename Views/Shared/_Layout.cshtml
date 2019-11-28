@@ -1,0 +1,59 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http;
+@using HerbShop.Services;
+@using HerbShop.Utils;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+    @*<link rel="stylesheet" href="~/css/site.css">*@
+    <title>@ViewData["title"] - HerbShop</title>
+</head>
+<body>
+    <header>
+        <div class="w3-bar w3-theme">
+            <a asp-action="Index" asp-controller="EShop" class="w3-bar-item w3-button w3-mobile w3-left">Sklep</a>
+            <a asp-action="Index" asp-controller="Account" class="w3-bar-item w3-button w3-mobile w3-left">Moje konto</a>
+            <a href="#" class="w3-bar-item w3-button w3-mobile w3-left">O nas</a>
+            <a href="@Routing.CartIndex" class="w3-bar-item w3-button w3-mobile w3-right">
+                Koszyk&nbsp;
+                @{
+                    ICookies cookies = new Cookies(new HttpContextAccessor
+                    {
+                        HttpContext = Context
+                    });
+                    <span class="w3-badge w3-theme-d2">@cookies.InCartQuantity</span>
+                }
+            </a>
+        </div>
+    </header>
+
+    @*@{ 
+        if(cookies.IsGDPR == false)
+        {
+            <div>
+                <p>
+                    Strona używa ciasteczek w celu lepszego korzystania ze strony
+                </p>
+                <button>Akceptuję</button>
+            </div>
+        }
+    }*@
+
+    <div class="w3-margin">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="w3-bar w3-theme">
+            <div class="w3-bar-item">Copyright by Bartosz Kopeć 2019</div>
+            <div class="w3-bar-item">Project for WSB Wrocław University</div>
+        </div>
+    </footer>
+</body>
+</html>
