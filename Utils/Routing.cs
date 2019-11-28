@@ -9,6 +9,7 @@
         public static string AccountRegister => "/account/register";
         public static string AccountData => "/account/data";
         public static string AccountLogout => "/account/logout";
+        public static string AboutIndex => "/about";
         public static string CartIndex => "/cart";
         public static string CartAdd => "/cart/add";
         public static string CartOrder => "/cart/order";
