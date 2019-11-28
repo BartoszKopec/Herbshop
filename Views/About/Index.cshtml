@@ -6,21 +6,15 @@
 
 <p>Jesteśmy firmą rodzinną z wieloletnim doświaczeniem.</p>
 <p>Nasze produkty:</p>
-<table class="w3-table">
-    @{ 
-        var herbs = ViewData["herbs"] as List<Herb>;
-        foreach (var herb in herbs)
-        {
-            <tr>
-
-                <td>
-                    @herb.Name
-                </td>
-                <td>
-                    <img src="@herb.Source" alt="herb's image" height="400"/>
-                </td>
-
-            </tr>
-        }
+@{ 
+    var herbs = ViewData["herbs"] as List<Herb>;
+    foreach (var herb in herbs)
+    {
+        <p class="w3-mobile w3-third">
+            @herb.Name
+        </p>
+        <p class="w3-mobile w3-rest">
+            <img src="@herb.Source" alt="herb's image" height="400"/>
+        </p>
     }
-</table>
+}
