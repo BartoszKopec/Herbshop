@@ -38,6 +38,7 @@ namespace HerbShop.Controllers
         [HttpGet("register")]
         public IActionResult Create()
         {
+            ViewData["title"] = "Rejestracja";
             return View();
         }
         [HttpPost("register")]

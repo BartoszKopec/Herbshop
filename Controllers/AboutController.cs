@@ -22,6 +22,7 @@ namespace HerbShop.Controllers
         {
             var herbs = _context.Herbs.ToList();
             ViewData["herbs"] = herbs;
+            ViewData["title"] = "O nas";
             return View();
         }
     }

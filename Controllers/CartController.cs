@@ -24,6 +24,7 @@ namespace HerbShop.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewData["title"] = "Koszyk";
             return View();
         }
 
@@ -60,6 +61,7 @@ namespace HerbShop.Controllers
         [HttpGet("order")]
         public IActionResult Order()
         {
+            ViewData["title"] = "Zamówienie";
             return View();
         }
         [HttpPost("order")]
