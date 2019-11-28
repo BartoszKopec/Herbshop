@@ -4,35 +4,18 @@
 
 <div class="w3-container">
     
-@{ 
-    var cart = ViewData["cart"] as HerbShop.Models.Cart;
-}
-    <table class="w3-table w3-striped">
-        <tr>
-            <th>Nazwa</th>
-            <th>Cena całkowita</th>
-            <th>Ilość</th>
-        </tr>
-        @{
-            foreach (var item in cart.Items)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.TotalAmount</td>
-                    <td>@item.QuantityInCart</td>
-                </tr>
-            }
-        }
-    </table>
-    <p>Cena całkowita: @cart.Amount</p>
-    <form>
-        <label>Imię</label>
-        <input name="firstName" />
-        <label>Nazwisko</label>
-        <input name="lastName" />
-        <label>Adres</label>
-        <input name="Address" />
-    </form>
+<form action="@HerbShop.Utils.Routing.CartOrder" method="post">
+    <label>Imię</label> <br />
+    <input name="FirstName" /> <br />
+    <label>Nazwisko</label> <br />
+    <input name="LastName" /> <br />
+    <label>Adres</label> <br />
+    <input name="Address" /> <br />
+    <label>Dodatkowe uwagi</label> <br />
+    <textarea name="Description"></textarea> <br />
+        
+    <input type="submit" value="Zamawiam"/>
+</form>
  
 </div>
 

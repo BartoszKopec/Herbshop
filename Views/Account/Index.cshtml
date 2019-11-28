@@ -1,6 +1,8 @@
 ﻿@{
     Layout = HerbShop.Utils.Routing.Layout;
 }
+@using Newtonsoft.Json;
+@using HerbShop.Models;
 
 <h1>Konto</h1>
 
@@ -8,4 +10,45 @@
     var login = ViewData["login"];
     <p>Witaj @login</p>
     <a href="@HerbShop.Utils.Routing.AccountLogout">Wyloguj</a>
+    <p>Zamówienia</p>
+    <table class="w3-table w3-striped" >
+        <tr>
+            <th>Data</th>
+            <th>Dane zamawiającego</th>
+            <th>Produkty</th>
+            <th>Kwota całkowita</th>
+            <th>Uwagi do zamówienia</th>
+        </tr>
+        @{ 
+            
+            var orders = ViewData["orders"] as List<Order>;
+            foreach (var order in orders)
+            {
+                List<Item> items = JsonConvert.DeserializeObject<List<Item>>(order.Products);
+                <tr>
+                    <td>@order.CreatedOn</td>
+                    <td>
+                        @order.FirstName <br />
+                        @order.LastName <br />
+                        @order.Address <br />
+                    </td>
+                    <td>
+                        @{ 
+                            foreach (var item in items)
+                            {
+                                <p>@item.Name</p>
+                                <p>@item.Type</p>
+                                <p>@item.Unit/@item.UnitSymbol</p>
+                                <p>Ilość: @item.QuantityInCart</p>
+                                <p>Wartość: @item.TotalAmount</p>
+                                <hr />
+                            }
+                        }
+                    </td>
+                    <td>@order.Total</td>
+                    <td>@order.Description</td>
+                </tr>
+            }
+        }
+    </table>
 }

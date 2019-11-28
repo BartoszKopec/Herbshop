@@ -22,7 +22,7 @@ namespace HerbShop.Services
 
         public int UserId
         {
-            get => (int)_session.GetInt32(_userId);
+            get => _session.GetInt32(_userId) ?? 0;
             set { if (value != -1) _session.SetInt32(_userId, value); else _session.Remove(_userId); }
         }
         public Cart Cart

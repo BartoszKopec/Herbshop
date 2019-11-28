@@ -2,6 +2,8 @@
 using HerbShop.Services;
 using HerbShop.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -58,9 +60,26 @@ namespace HerbShop.Controllers
         [HttpGet("order")]
         public IActionResult Order()
         {
-            var cart = _cookies.Cart;
-            ViewData["cart"] = cart;
             return View();
+        }
+        [HttpPost("order")]
+        public IActionResult PostOrder([FromForm]OrderPost orderPost)
+        {
+            var order = new Order
+            {
+                UserId = _cookies.UserId,
+                Total = _cookies.Cart.Amount,
+                Description = orderPost.Description,
+                FirstName = orderPost.FirstName,
+                LastName = orderPost.LastName,
+                Address = orderPost.Address,
+                CreatedOn = DateTime.Now,
+                Products = JsonConvert.SerializeObject(_cookies.Cart.Items)
+            };
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+            _cookies.Remove(CookiesName.Cart);
+            return RedirectPermanent(Routing.AccountIndex);
         }
     }
 }

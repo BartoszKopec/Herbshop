@@ -29,21 +29,8 @@
                         }
                     }
                 </table>
+                <p>Cena całkowita - @cookies.Cart.Amount</p>
                 <a href="@HerbShop.Utils.Routing.CartOrder">Zamawiam</a>
-                @*<form action="@HerbShop.Utils.Routing.CartOrder" method="get">
-                    <input type="submit" value="Zamawiam" />
-                </form>*@
-                @*<form action="mailto:kopec.bartosz.app@gmail.com" method="post">
-                    <input name="login" value="@cookies.UserId" hidden/>
-                    @{ 
-                        for (int i = 0; i < cookies.Cart.Items.Count; i++) 
-                        { 
-                            var item = cookies.Cart.Items[i];  
-                            <input name="item_@i" value="@item.Id;@item.QuantityInCart" hidden/>
-                        }
-                    }
-                    <input type="submit" value="Zamawiam"/>
-                </form>*@
             }
         }
 

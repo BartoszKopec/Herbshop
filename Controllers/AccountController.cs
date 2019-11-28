@@ -27,18 +27,20 @@ namespace HerbShop.Controllers
                 var user = _context.Users.Find(_cookies.UserId);
                 ViewData["title"] = "Twoje konto";
                 ViewData["login"] = user.Login;
+                var orders = _context.Orders.Where(order => order.UserId == user.Id);
+                ViewData["orders"] = orders.ToList();
                 return View();
             }
             else
                 return Redirect(Routing.AccountLogin);
         }
 
-        [HttpGet("create")]
+        [HttpGet("register")]
         public IActionResult Create()
         {
             return View();
         }
-        [HttpPost("create")]
+        [HttpPost("register")]
         public IActionResult Create([FromForm]User user)
         {
             if (_context.Users.Any(u => u.Login == user.Login && u.Password == user.Password))
