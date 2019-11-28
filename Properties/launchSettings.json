@@ -22,6 +22,12 @@
       },
       "nativeDebugging": false,
       "applicationUrl": "http://localhost:5000"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "environmentVariables": {},
+      "httpPort": 49896
     }
   }
 }
